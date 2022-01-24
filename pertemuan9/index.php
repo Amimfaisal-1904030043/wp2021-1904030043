@@ -54,7 +54,7 @@ $camaba = query("SELECT * FROM mhs ");
           <hr class="bg-dark">
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#"><i class="fas fa-user-edit"></i> Input Camaba</a>
+          <a class="nav-link text-white" href="tambah.php"><i class="fas fa-user-edit"></i> Input Camaba</a>
           <hr class="bg-dark">
         </li>
         <li class="nav-item">

@@ -2,6 +2,12 @@
 // date_default_timezone_get("Asia/Jakarta");
 
 require 'function.php';
+
+if (!isset($_GET['id'])) {
+  header("location: index.php");
+  exit;
+}
+
 $id = $_GET['id'];
 $camaba = query("SELECT * FROM mhs WHERE id=$id ");
 // var_dump($camaba);
@@ -25,7 +31,7 @@ $camaba = query("SELECT * FROM mhs WHERE id=$id ");
 
 <body>
   <!-- start navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">SIPEMABA || Kampus Kita</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,27 +50,27 @@ $camaba = query("SELECT * FROM mhs WHERE id=$id ");
 
   <!-- sidebar -->
   <div class="row mt-4">
-    <div class="col-md-2  mt-2 pr-3 pt-4 bg-secondary ">
+    <div class="col-md-2  mt-2 pr-3 pt-4 " style=" background-color: #e3f2fd; ">
       <!-- menu -->
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link text-white" aria-current="page" href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+          <a class="nav-link text-black" aria-current="page" href="index.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
           <hr class="bg-dark">
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="index.php"><i class="fas fa-users"></i> Calon Mahasiswa</a>
+          <a class="nav-link text-black" href="index.php"><i class="fas fa-users"></i> Calon Mahasiswa</a>
           <hr class="bg-dark">
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#"><i class="fas fa-user-edit"></i> Input Camaba</a>
+          <a class="nav-link text-black" href="#"><i class="fas fa-user-edit"></i> Input Camaba</a>
           <hr class="bg-dark">
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#"><i class="fas fa-chalkboard-teacher"></i> Daftar Dosen</a>
+          <a class="nav-link text-black" href="#"><i class="fas fa-chalkboard-teacher"></i> Daftar Dosen</a>
           <hr class="bg-dark">
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#"><i class="far fa-calendar-alt"></i> Jadwal Kuliah</a>
+          <a class="nav-link text-black" href="#"><i class="far fa-calendar-alt"></i> Jadwal Kuliah</a>
           <hr class="bg-dark">
         </li>
       </ul>
@@ -83,7 +89,7 @@ $camaba = query("SELECT * FROM mhs WHERE id=$id ");
         <li class="list-group-item"> <img src="image/<?= $camaba['foto_maba']; ?> " alt="" width="250px" height="250px"></li>
         <li class="list-group-item">
           <a href="edit.php?id=<?= $cmb['id']; ?>" class="btn  btn-warning" role="button">Edit</a> ||
-          <a href="hapus.php?id=<?= $cmb['id']; ?>" class="btn  btn-danger" role="button">Hapus</a> ||
+          <a href="hapus.php?id=<?= $camaba['id']; ?>" class="btn  btn-danger" role="button">Hapus</a> ||
           <a href="index.php" class="btn  btn-primary    " role="button">Kembali</a>
         </li>
       </ul>

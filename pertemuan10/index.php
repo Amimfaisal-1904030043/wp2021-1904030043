@@ -23,7 +23,7 @@ $camaba = query("SELECT * FROM mhs ");
 
 <body>
   <!-- start navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">SIPEMABA || Kampus Kita</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,27 +42,27 @@ $camaba = query("SELECT * FROM mhs ");
 
   <!-- sidebar -->
   <div class="row mt-4">
-    <div class="col-md-2  mt-2 pr-3 pt-4 bg-secondary ">
+    <div class="col-md-2  mt-2 pr-3 pt-4 " style=" background-color: #e3f2fd; ">
       <!-- menu -->
-      <ul class="nav flex-column">
+      <ul class=" nav flex-column">
         <li class="nav-item">
-          <a class="nav-link text-white" aria-current="page" href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+          <a class="nav-link text-black" aria-current="page" href="index.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
           <hr class="bg-dark">
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="index.php"><i class="fas fa-users"></i> Calon Mahasiswa</a>
+          <a class="nav-link text-black" href="index.php"><i class="fas fa-users"></i> Calon Mahasiswa</a>
           <hr class="bg-dark">
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#"><i class="fas fa-user-edit"></i> Input Camaba</a>
+          <a class="nav-link text-black" href="tambah.php"><i class="fas fa-user-edit"></i> Input Camaba</a>
           <hr class="bg-dark">
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#"><i class="fas fa-chalkboard-teacher"></i> Daftar Dosen</a>
+          <a class="nav-link text-black" href="#"><i class="fas fa-chalkboard-teacher"></i> Daftar Dosen</a>
           <hr class="bg-dark">
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#"><i class="far fa-calendar-alt"></i> Jadwal Kuliah</a>
+          <a class="nav-link text-black" href="#"><i class="far fa-calendar-alt"></i> Jadwal Kuliah</a>
           <hr class="bg-dark">
         </li>
       </ul>
@@ -71,7 +71,7 @@ $camaba = query("SELECT * FROM mhs ");
       <!-- konten -->
       <h3><i class="fas fa-users"></i> Daftar Calon Mahasiswa </h3>
       <hr>
-      <table class="table table-light table-striped">
+      <table class="table table-primary table-striped table-bordered border-primary">
         <thead>
           <tr>
             <th scope="col">No.</th>

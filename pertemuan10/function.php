@@ -1,5 +1,5 @@
-<?php 
-    $conn =  mysqli_connect('localhost', 'root','', 'mahasiswa5');
+<?php
+$conn =  mysqli_connect('localhost', 'root', '', 'mahasiswa5');
 
 //   pemanggilan tabel
 
@@ -9,17 +9,38 @@ function query($query)
 
     // mengambil seluruh data pada tabel
     $result = mysqli_query($conn, $query);
-    if(mysqli_num_rows($result) == 1){
+    if (mysqli_num_rows($result) == 1) {
         return mysqli_fetch_assoc($result);
     }
 
     // pemanggilan elemen data dengan rapih
     $row = [];
-    while ($rows = mysqli_fetch_assoc($result)){
+    while ($rows = mysqli_fetch_assoc($result)) {
         $row[] = $rows;
     }
-     return $row;
-
+    return $row;
 }
 
-?>
+function tambah($data)
+{
+    global $conn;
+
+    $nama = ($data['nama']);
+    $alamat = ($data['alamat']);
+    $jenis_kelamin = ($data['jenis_kelamin']);
+    $agama = ($data['agama']);
+    $sekolah_asal = ($data['sekolah_asal']);
+    $foto_maba = ($data['foto_maba']);
+
+    $query = "INSERT INTO  mhs VALUES (null,'$nama','$alamat','$jenis_kelamin','$agama','$sekolah_asal','$foto_maba');";
+    mysqli_query($conn, $query);
+
+    echo mysqli_error(($conn));
+    return mysqli_affected_rows($conn);
+}
+function hapus($id)
+{
+    global $conn;
+    mysqli_query($conn, "DELETE FROM mhs WHERE id=  $id") or die(mysqli_error($conn));
+    return mysqli_affected_rows($conn);
+}
