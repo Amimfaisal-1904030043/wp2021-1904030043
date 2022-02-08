@@ -5,6 +5,9 @@ require 'function.php';
 $celana = query("SELECT * FROM celana ");
 // include 'koneksi.php';
 
+if (isset($_POST['cari'])) {
+    $celana = cariCelana($_POST['keyword']);
+}
 
 ?>
 
@@ -118,11 +121,11 @@ $celana = query("SELECT * FROM celana ");
                     </button>
 
                     <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <form method="POST" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" name="keyword" id="keyword" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-success" type="button">
+                                <button class="btn btn-success" type="submit" name="cari">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
@@ -194,6 +197,13 @@ $celana = query("SELECT * FROM celana ");
                         <h1 class="h3 mb-0 text-gray-800">PRODUK KAMI</h1>
 
                     </div>
+                    <?php if (empty($baju)) : ?>
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h3>Data Tidak di Temukan</h3>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                     <div class="row row-cols-1 row-cols-md-3 g-4">
                         <?php foreach ((array) $celana as $cln) : ?>
                             <div class="col">

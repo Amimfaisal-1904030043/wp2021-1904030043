@@ -129,3 +129,19 @@ function cariBaju($keyword)
 
     return $rows;
 }
+
+function cariCelana($keyword)
+{
+    global $conn;
+
+    $query = "SELECT  * FROM celana WHERE  judul LIKE '%$keyword%'";
+
+    $result = mysqli_query($conn, $query);
+
+    $rows = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+
+    return $rows;
+}

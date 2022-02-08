@@ -2,9 +2,12 @@
 // date_default_timezone_get("Asia/Jakarta");
 
 require 'function.php';
-$camaba = query("SELECT * FROM baju");
+$baju = query("SELECT * FROM baju");
 // include 'koneksi.php';
 
+if (isset($_POST['cari'])) {
+    $baju = cariBaju($_POST['keyword']);
+}
 
 ?>
 
@@ -118,11 +121,11 @@ $camaba = query("SELECT * FROM baju");
                     </button>
 
                     <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <form method="POST" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" name="keyword" id="keyword" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-success" type="button">
+                                <button class="btn btn-success" type="submit" name="cari">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
@@ -139,11 +142,11 @@ $camaba = query("SELECT * FROM baju");
                             </a>
                             <!-- Dropdown - Messages -->
                             <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
+                                <form class="form-inline mr-auto w-100 navbar-search" method="POST">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control bg-light border-0 small" id="keyword" name="keyword" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
+                                            <button class="btn btn-primary" type="submit" name="cari">
                                                 <i class="fas fa-search fa-sm"></i>
                                             </button>
                                         </div>
@@ -156,7 +159,7 @@ $camaba = query("SELECT * FROM baju");
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-light small ">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-light small ">Faisal</span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -194,17 +197,24 @@ $camaba = query("SELECT * FROM baju");
                         <h1 class="h3 mb-0 text-gray-800">PRODUK KAMI</h1>
 
                     </div>
+                    <?php if (empty($baju)) : ?>
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h3>Data Tidak di Temukan</h3>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                     <div class="row row-cols-1 row-cols-md-3 g-4">
-                        <?php foreach ((array) $camaba as $cmb) : ?>
+                        <?php foreach ((array) $baju as $bj) : ?>
                             <div class="col">
                                 <div class="card h-100">
-                                    <img src="img/<?php echo $cmb['gambar']; ?>" class="card-img-top" height="300px" alt="...">
+                                    <img src="img/<?php echo $bj['gambar']; ?>" class="card-img-top" height="300px" alt="...">
                                     <div class="card-body">
-                                        <h5 class="card-header bg-secondary text-center text-white"><?php echo $cmb['judul']; ?></h5>
-                                        <h6 class="card-title  text-black pt-2">Rp. <?php echo $cmb['harga']; ?></h6>
-                                        <p class="card-text"><?php echo $cmb['keterangan']; ?></p>
+                                        <h5 class="card-header bg-secondary text-center text-white"><?php echo $bj['judul']; ?></h5>
+                                        <h6 class="card-title  text-black pt-2">Rp. <?php echo $bj['harga']; ?></h6>
+                                        <p class="card-text"><?php echo $bj['keterangan']; ?></p>
                                     </div>
-                                    <a href="detailBaju.php?id=<?= $cmb['id']; ?>" class="btn btn-success">DETAIL</a>
+                                    <a href="detailBaju.php?id=<?= $bj['id']; ?>" class="btn btn-success">DETAIL</a>
                                 </div>
                             </div>
                         <?php endforeach ?>
